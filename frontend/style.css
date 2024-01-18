@@ -24,7 +24,7 @@ h1 {
     color: #fff;
 }
 #uploadForm {
-    width: 50%;
+    width: 100%;
     justify-content: center;
     justify-items: center;
     display: flex;
