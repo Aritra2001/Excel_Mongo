@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT;
 
 const allowedOrigins = [
-    ''
+    'https://excel-mongo.vercel.app'
 ];
 
 app.use(cors({
