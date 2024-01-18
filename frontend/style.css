@@ -33,6 +33,7 @@ h1 {
     box-sizing: border-box;
     background: #272727;
     height: 10vh;
+    gap: 1rem;
 }
 button {
     padding: 5px;
@@ -53,11 +54,28 @@ button:hover {
 }
 label {
     color: #fff;
+    font-weight: 300;
 }
 input {
     color: #cacaca;
     font-weight: 100;
-    margin-left: 2rem;
+    width: 280px;
+    border: 1px solid #f1f1f1;
+    border-radius: 25px;
+    cursor: pointer;
+}
+input[type=file]::file-selector-button {
+    background: #8024d6;
+    width: 6rem;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    font-family: 'Poppins';
+    cursor: pointer;
+}
+input[type=file]::placeholder {
+    text-indent: 2rem;
 }
 @media screen and (max-width: 600px) {
     img {
