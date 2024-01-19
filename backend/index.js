@@ -79,6 +79,8 @@ async function insertDataIntoMongoDB(data) {
 
     // Insert data into MongoDB
     const result = await collection.insertMany(data);
+    var count  = 0
+    await collection.insertOne({count: count + 1, _id: '1'})
 
     console.log(`${result.insertedCount} documents inserted into MongoDB`);
   } finally {
