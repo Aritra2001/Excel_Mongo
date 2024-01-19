@@ -45,7 +45,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     const dataToInsert = dataArray.slice(1).map(row => {
       const rowData = {};
       headerRow.forEach((header, index) => {
-        rowData[header] = row[index];
+        rowData[header] = row[index].toUpperCase();
       });
       return rowData;
     });
