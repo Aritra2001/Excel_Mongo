@@ -42,7 +42,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     const headerRow = dataArray[0];
 
     // Find the index of the "Names" column
-    const namesColumnIndex = headerRow.indexOf('Names');
+    const namesColumnIndex = headerRow.indexOf('Name');
 
     // Prepare data for MongoDB insertion
     const dataToInsert = dataArray.slice(1).map(row => {
