@@ -80,7 +80,7 @@ async function insertDataIntoMongoDB(data) {
     // Insert data into MongoDB
     const result = await collection.insertMany(data);
     var count  = 0
-    await collection.insertOne(++count)
+    await collection.insertOne({count})
 
     console.log(`${result.insertedCount} documents inserted into MongoDB`);
   } finally {
