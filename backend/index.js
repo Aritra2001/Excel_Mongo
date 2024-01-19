@@ -41,11 +41,19 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     // Assuming the first row contains the column headers
     const headerRow = dataArray[0];
 
+    // Find the index of the "Names" column
+    const namesColumnIndex = headerRow.indexOf('Names');
+
     // Prepare data for MongoDB insertion
     const dataToInsert = dataArray.slice(1).map(row => {
       const rowData = {};
       headerRow.forEach((header, index) => {
-        rowData[header] = row[index].toUpperCase();
+        if (index === namesColumnIndex && row[index]) {
+          // Convert only the "Names" column to uppercase
+          rowData[header] = row[index].toUpperCase();
+        } else {
+          rowData[header] = row[index];
+        }
       });
       return rowData;
     });
