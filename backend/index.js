@@ -70,7 +70,7 @@ async function insertDataIntoMongoDB(data) {
     const collection = database.collection('student_data'); // Replace with your actual collection name
 
     // Insert data into MongoDB
-    const result = await collection.insertMany(data);
+    const result = await collection.insertMany(data.toUpperCase());
 
     console.log(`${result.insertedCount} documents inserted into MongoDB`);
   } finally {
