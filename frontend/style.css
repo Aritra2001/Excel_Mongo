@@ -111,4 +111,7 @@ input[type=file]::placeholder {
     button {
         font-size: 12px;
     }
+    #delete {
+        font-size: 12px;
+    }
 }
