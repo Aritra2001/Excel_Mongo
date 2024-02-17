@@ -46,11 +46,28 @@ button {
     background-color: #8024d6;
     font-size: medium;
 }
+#delete {
+    padding: 5px;
+    width: 7rem;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    color: #fff;
+    outline: none;
+    border: none;
+    background-color: #d62448;
+    font-size: medium;
+}
+#delete:hover {
+    cursor: pointer;
+    border: 2px solid #d62448;
+    background: transparent;
+    transition: 0.5s;
+}
 button:hover {
     cursor: pointer;
     border: 2px solid #8024d6;
     background: transparent;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 label {
     color: #fff;

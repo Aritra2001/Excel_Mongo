@@ -89,6 +89,23 @@ async function insertDataIntoMongoDB(data) {
   }
 }
 
+app.post('/emptycollection', async( req, res) => {
+  const client = new MongoClient(process.env.MONGO_URI)
+  
+  try {
+    const database = client.db();
+    const collection = database.collection('one');
+    
+    await collection.deleteMany({});
+    client.close();
+    res.status(200).json('Collection Emptied Successfully');
+
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error.message)
+  }
+})
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

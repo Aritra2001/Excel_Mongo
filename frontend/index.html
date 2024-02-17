@@ -14,6 +14,7 @@
     <label for="fileInput">Choose an excel file:</label>
     <input type="file" id="fileInput" accept=".xlsx" required placeholder="Upload cxcel">
     <button type="submit">Upload</button>
+    <button type="button" id="delete">Clear DB</button>
   </form>
 
   <script>
@@ -45,6 +46,19 @@
         alert('Please choose an Excel file before uploading.');
       }
     });
+
+    document.getElementById('delete').addEventListener('click', async() => {
+      try {
+        const response = await fetch('https://excel-mongo-backend.vercel.app/emptycollection', {method : 'POST'});
+        if(response.ok) {
+          alert('Database Emptied Successfully!');
+        }
+        else
+          alert('Failed to Empty Collection');
+      } catch (error) {
+        alert("An Error Occured:", error);
+      }
+    })
   </script>
 </body>
 </html>
