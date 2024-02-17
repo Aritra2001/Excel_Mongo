@@ -48,13 +48,17 @@
     });
 
     document.getElementById('delete').addEventListener('click', async() => {
-      try {
+
+      const confirmDelete = confirm('The Data from the Database will be deleted');
+      if(confirmDelete) {
+        try {
         const response = await fetch('https://excel-mongo-backend.vercel.app/emptycollection', {method : 'POST'});
         if(response.ok) {
           alert('Database Emptied Successfully!');
         }
       } catch (error) {
         alert("An Error Occured:", error);
+      }
       }
     })
   </script>
