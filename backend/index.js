@@ -94,7 +94,7 @@ app.post('/emptycollection', async( req, res) => {
   
   try {
     const database = client.db();
-    const collection = database.collection('student_data');
+    const collection = database.collection('one');
     
     await collection.deleteMany({});
     client.close();
