@@ -15,7 +15,7 @@ img {
 }
 h1 {
     font-weight: 600;
-    font-size: 70px;
+    font-size: 50px;
     color: #14081f;
     justify-content: center;
     display: flex;
@@ -23,7 +23,7 @@ h1 {
     justify-items: center;
     color: #fff;
 }
-#uploadForm {
+.form_style {
     width: 100%;
     justify-content: center;
     justify-items: center;
@@ -37,7 +37,7 @@ h1 {
 }
 button {
     padding: 5px;
-    width: 7rem;
+    width: 12rem;
     font-family: 'Poppins';
     border-radius: 25px;
     color: #fff;
@@ -80,6 +80,13 @@ input {
     border: 1px solid #f1f1f1;
     border-radius: 25px;
     cursor: pointer;
+    background: transparent;
+    width: 17rem;
+    height: 5vh;
+}
+input[type=text] {
+    text-indent: 2rem;
+    font-size: medium;
 }
 input[type=file]::file-selector-button {
     background: #8024d6;
