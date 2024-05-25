@@ -1,18 +1,17 @@
 const multer = require('multer');
 
-// Define storage options
+// Multer configuration
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './public'); // Set destination directory
-    },
-    filename: function (req, file, cb) {
-        // Sanitize the file name to remove special characters
-        const sanitizedFileName = file.originalname.replace(/[^a-zA-Z0-9-_.]/g, '') + Date.now();
-        cb(null, sanitizedFileName); // Use the sanitized file name
-    }
+  destination: function (req, file, cb) {
+    cb(null, 'public'); // Set the destination folder
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Use the original filename
+  }
 });
 
-// Initialize multer middleware with the storage options
-const upload = multer({ storage: storage }).single('image');
+// Create multer instance
+const upload = multer({ storage: storage });
 
 module.exports = upload;
+

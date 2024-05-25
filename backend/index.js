@@ -3,7 +3,7 @@ const multer = require('multer');
 const xlsx = require('xlsx');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
-const middleware = require('./middleware/multer');
+const upload = require('./middleware/multer');
 const { uploadOnCloudinary } = require('./utility/cloudinary')
 require('dotenv').config();
 
@@ -28,9 +28,6 @@ app.use(cors({
 
 app.use(express.json())
 
-// Multer setup for handling file uploads
-const storage = multer.memoryStorage(); // Store the file in memory
-const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('file'), async (req, res) => {
   try {
@@ -110,7 +107,7 @@ app.post('/emptycollection', async( req, res) => {
   }
 })
 
-app.post('/addInstuctor', middleware, async (req, res) => {
+app.post('/addInstuctor', upload.single('image'), async (req, res) => {
   const client = new MongoClient(process.env.MONGO_URI);
   const { name, courseName } = req.body;
   const image_url = req.file.path;
