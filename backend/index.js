@@ -129,7 +129,7 @@ app.post('/addInstuctor', upload.single('image'), async (req, res) => {
       throw Error('Course name already exits');
     }
     
-    await collection.insertOne({ name, courseName, siganture: response.url });
+    await collection.insertOne({ name, courseName, siganture: response.url, _id: 'CS_Name' });
     res.status(200).json({message: 'Couse name and Instructor name added!'});
   }
   catch(error) {
