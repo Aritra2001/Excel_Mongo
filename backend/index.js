@@ -3,7 +3,6 @@ const multer = require('multer');
 const xlsx = require('xlsx');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
-const { uploadOnCloudinary } = require('./utility/cloudinary')
 require('dotenv').config();
 
 const app = express();
@@ -109,10 +108,10 @@ app.post('/emptycollection', async( req, res) => {
   }
 })
 
-app.post('/addInstuctor', upload.single('image'), async (req, res) => {
+app.post('/addInstuctor', async (req, res) => {
+  
   const client = new MongoClient(process.env.MONGO_URI);
   const { name, courseName } = req.body;
-  const image_url = req.file.buffer;
 
   try {
     const database = client.db();
@@ -120,7 +119,6 @@ app.post('/addInstuctor', upload.single('image'), async (req, res) => {
 
     const instuctor_name = await collection.findOne({ name });
     const cname = await collection.findOne({ courseName });
-    const response = await uploadOnCloudinary(image_url);
 
     if(instuctor_name) {
       throw Error('Instuctor already exits');
@@ -129,7 +127,7 @@ app.post('/addInstuctor', upload.single('image'), async (req, res) => {
       throw Error('Course name already exits');
     }
     
-    await collection.insertOne({ name, courseName, siganture: response.url, _id: 'CS_Name' });
+    await collection.insertOne({ name, courseName, _id: 'CS_Name' });
     res.status(200).json({message: 'Couse name and Instructor name added!'});
   }
   catch(error) {
