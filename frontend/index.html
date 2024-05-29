@@ -87,7 +87,6 @@
 
     const name = document.getElementById('name').value;
     const courseName = document.getElementById('courseName').value;
-    const responseMessage = document.getElementById('responseMessage');
 
     try {
         const response = await fetch('/addInstructor', {
@@ -101,15 +100,12 @@
         const data = await response.json();
 
         if (response.ok) {
-            responseMessage.textContent = data.message;
-            responseMessage.style.color = 'green';
+            window.alert('Instuctor adeed successfully!')
         } else {
-            responseMessage.textContent = data.error;
-            responseMessage.style.color = 'red';
+            throw Error('Instuctor cannot be added!')
         }
     } catch (error) {
-        responseMessage.textContent = 'An error occurred: ' + error.message;
-        responseMessage.style.color = 'red';
+        window.alert(error.message)
     }
 });
 
