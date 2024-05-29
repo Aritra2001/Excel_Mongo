@@ -82,29 +82,37 @@
     });
 
     // Add Instructor Form Submission
-    document.getElementById('addInstructorForm').addEventListener('submit', async function (event) {
-      event.preventDefault();
+    document.getElementById('instructorForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
-      const form = event.target;
-      const formData = new FormData(form);
+    const name = document.getElementById('name').value;
+    const courseName = document.getElementById('courseName').value;
+    const responseMessage = document.getElementById('responseMessage');
 
-      try {
-        const response = await fetch('https://excel-mongo-backend.vercel.app/addInstuctor', {
-          method: 'POST',
-          body: formData,
+    try {
+        const response = await fetch('/addInstructor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, courseName })
         });
 
-        const result = await response.json();
+        const data = await response.json();
+
         if (response.ok) {
-          alert(result.message);
+            responseMessage.textContent = data.message;
+            responseMessage.style.color = 'green';
         } else {
-          alert('Error: ' + result.error);
+            responseMessage.textContent = data.error;
+            responseMessage.style.color = 'red';
         }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error adding instructor.');
-      }
-    });
+    } catch (error) {
+        responseMessage.textContent = 'An error occurred: ' + error.message;
+        responseMessage.style.color = 'red';
+    }
+});
+
   </script>
 </body>
 </html>
