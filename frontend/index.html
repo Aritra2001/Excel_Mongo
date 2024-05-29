@@ -82,33 +82,33 @@
     });
 
     // Add Instructor Form Submission
-    document.getElementById('instructorForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
+    document.getElementById('addInstructorForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const courseName = document.getElementById('courseName').value;
+      const name = document.getElementById('name').value;
+      const courseName = document.getElementById('courseName').value;
 
-    try {
-        const response = await fetch('/addInstructor', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, courseName })
+      try {
+        const response = await fetch('https://excel-mongo-backend.vercel.app/addInstuctor', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, courseName })
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            window.alert('Instuctor adeed successfully!')
+          alert('Instructor added successfully!');
         } else {
-            throw Error('Instuctor cannot be added!')
+          alert('Error: ' + data.error);
         }
-    } catch (error) {
-        window.alert(error.message)
-    }
-});
-
+      } catch (error) {
+        alert('An error occurred: ' + error.message);
+      }
+    });
   </script>
 </body>
 </html>
+
